@@ -1,0 +1,52 @@
+@use 'breakpoints';
+
+$icon-scale: (
+  'regular': 2.5rem,
+  'small': 2rem,
+);
+
+:root {
+  @each $size, $value in $icon-scale {
+    @if $size == 'regular' {
+      --icon-size: #{$value};
+    } @else {
+      @include breakpoints.respond(tab-port) {
+        --icon-size: #{$value};
+      }
+    }
+  }
+}
+
+@mixin icon($type) {
+  & {
+    height: var(--icon-size);
+    width: var(--icon-size);
+    transform: translateY(2px);
+  }
+
+  @if $type == primary {
+    fill: var(--clr-primary-300);
+  }
+
+  @if $type == neutral {
+    fill: var(--clr-neutral-100);
+  }
+
+  @if $type == bookmarked {
+    fill: var(--clr-accent-500);
+    transform: translateY(2px) scale(1.2);
+  }
+
+  @content;
+}
+.icon-primary {
+  @include icon(primary);
+}
+
+.icon-white {
+  @include icon(neutral);
+}
+
+.icon-bookmarked {
+  @include icon(bookmarked);
+}

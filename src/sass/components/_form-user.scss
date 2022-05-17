@@ -1,0 +1,129 @@
+@use '../abstracts/variables';
+@use '../utilities/flow';
+@use '../abstracts/breakpoints';
+
+.form-user {
+  //position
+  position: fixed;
+  z-index: 555;
+
+  //sizing
+  height: 100vh;
+  width: 100vw;
+
+  //styling
+  background-color: var(--clr-black-opacity-400);
+  transition: all 0.5s;
+
+  //alignment
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    //sizing
+    width: 50rem;
+    height: 33rem; //28rem
+    padding: 2rem 2.5rem;
+
+    //styling
+    background-color: var(--clr-neutral-100);
+    border: none;
+    border-radius: 25px;
+
+    //alignment
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+    position: relative;
+
+    @include breakpoints.respond(phone-reg) {
+      width: 90%;
+    }
+  }
+
+  &__content {
+    text-align: center;
+  }
+
+  &__span {
+    color: var(--clr-accent-200);
+  }
+
+  &__input {
+    //typography
+    font-size: 1.5rem;
+    font-family: inherit;
+
+    //styling
+    border-radius: 2px;
+    border: 1px solid var(--clr-primary-300);
+    // border-bottom: 3px solid var(--clr-accent-300);
+
+    //others
+    max-width: 20rem;
+    padding: 1.5rem 2rem;
+    transition: all 0.3s;
+
+    &:focus {
+      box-shadow: variables.$shadow-black-light;
+      outline: none;
+      border-bottom: 3px solid var(--clr-accent-300);
+
+      &:invalid {
+        border-bottom: 3px solid var(--clr-neutral-900);
+      }
+    }
+
+    &::-webkit-input-placeholder {
+      color: var(--clr-neutral-300);
+    }
+  }
+
+  &__input:placeholder-shown + &__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+  }
+
+  &__label {
+    // typography
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--clr-accent-300);
+
+    //alignment
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+
+    //others
+    display: block;
+    transition: all 0.3s;
+    text-align: start;
+  }
+
+  &__btn {
+    margin-block: flow.$margin-sm;
+    font-size: var(--fs-label);
+  }
+
+  &__btn-close {
+    //position
+    top: 0rem;
+    right: 1.6rem;
+    position: absolute;
+
+    //styling
+    font-family: inherit;
+    opacity: 0.3;
+    background-color: transparent;
+    font-size: 3.5rem;
+
+    //default
+    cursor: pointer;
+    border: none;
+  }
+}

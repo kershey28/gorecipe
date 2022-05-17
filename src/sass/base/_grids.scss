@@ -1,0 +1,152 @@
+@use '../abstracts/breakpoints';
+
+// childrens of Main Container
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include breakpoints.respond(tab-port) {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+}
+
+// childrens of App
+//children-1
+.pageDashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5rem;
+}
+
+.operation {
+  display: grid;
+  grid-template-areas:
+    'search search'
+    'rec book';
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  gap: 5rem;
+
+  &__search {
+    grid-area: search;
+  }
+
+  &__add-recipe {
+    grid-area: rec;
+  }
+
+  &__bookmarks {
+    grid-area: book;
+  }
+}
+
+.features {
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 5rem;
+
+    @include breakpoints.respond(phone-reg) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.upload {
+  display: grid;
+  grid-template-areas:
+    'data ing'
+    'btn btn';
+  gap: 4rem 6rem;
+
+  @include breakpoints.respond(tab-port) {
+    grid-template-areas:
+      'data'
+      'ing'
+      'btn';
+    gap: 6rem;
+  }
+
+  &__data {
+    grid-area: data;
+  }
+
+  &__ingredients {
+    grid-area: ing;
+  }
+
+  &__btn {
+    grid-area: btn;
+    justify-self: center;
+  }
+}
+
+//children-2
+.pageRecipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.recipe {
+  //children-1
+  &__details {
+    display: grid;
+    grid-template-areas: 'time serv pins';
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+
+    @include breakpoints.respond(tab-port) {
+      gap: 1.75rem;
+    }
+
+    @include breakpoints.respond(phone-reg) {
+      grid-template-areas:
+        'pins'
+        'time'
+        'serv';
+    }
+  }
+
+  &__time {
+    grid-area: time;
+  }
+
+  &__servings {
+    grid-area: serv;
+    margin-right: auto;
+  }
+
+  &__pins {
+    grid-area: pins;
+
+    @include breakpoints.respond(phone-reg) {
+      justify-self: center;
+    }
+  }
+
+  //children-2
+  &__ingredients {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+}

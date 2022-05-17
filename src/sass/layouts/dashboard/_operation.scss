@@ -1,0 +1,10 @@
+@use '../../abstracts/breakpoints';
+@use '../../utilities/flow';
+
+.operation {
+  &__search {
+    @include breakpoints.respond(phone-reg) {
+      margin-bottom: flow.$margin-lg;
+    }
+  }
+}

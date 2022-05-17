@@ -1,0 +1,186 @@
+@use '../abstracts/variables';
+
+@mixin btn-regular($type) {
+  & {
+    //sizing
+    padding: 1.5rem 3rem;
+    width: max-content;
+
+    //typography
+    text-decoration: none;
+    font-size: var(--fs-label);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+
+    //styling
+    border-radius: 10rem;
+    transition: all 0.2s;
+
+    //default
+    appearance: none;
+    cursor: pointer;
+
+    //layout
+    display: inline-block;
+    position: relative;
+  }
+
+  &:hover,
+  &:focus {
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  @if $type == primary {
+    background-image: linear-gradient(
+      to right bottom,
+      var(--clr-accent-300),
+      var(--clr-accent-200),
+      var(--clr-accent-100)
+    );
+    color: var(--clr-neutral-100);
+    box-shadow: variables.$shadow-black-light;
+    border: 1px solid var(--clr-accent-200);
+
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: variables.$shadow-black-dark;
+    }
+  }
+
+  @if $type == ghost {
+    background-color: transparent;
+    box-shadow: variables.$shadow-black-light;
+    border: 1px solid var(--clr-primary-300);
+    color: var(--clr-accent-300);
+
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: variables.$shadow-black-dark;
+    }
+  }
+
+  @content;
+}
+
+.btn-cta {
+  @include btn-regular(primary);
+}
+
+.btn-ghost {
+  @include btn-regular(ghost);
+}
+
+@mixin btn-text($type) {
+  & {
+    //styling
+    background-color: transparent;
+    text-transform: uppercase;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+
+    //sizing
+    width: max-content;
+    padding: 3px;
+
+    //misc
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: variables.$shadow-black-light;
+  }
+
+  &:hover,
+  &:focus {
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  @if $type == primary {
+    color: var(--clr-accent-300);
+  }
+
+  @if $type == neutral {
+    color: var(--clr-neutral-800);
+  }
+}
+
+.btn-text {
+  &--primary {
+    @include btn-text(primary);
+  }
+
+  &--neutral {
+    @include btn-text(neutral);
+  }
+}
+
+// Operation Button
+@mixin btn-ops() {
+  & {
+    //sizing
+    display: inline-block;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.8rem;
+    padding: 1px;
+
+    //reset
+    appearance: none;
+    cursor: pointer;
+    border: none;
+
+    //styling
+    background-color: var(--clr-primary-300);
+    color: var(--clr-neutral-100);
+    border-radius: 0.7rem;
+    transition: all 0.3s;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: variables.$shadow-black-light;
+  }
+
+  &:hover,
+  &:focus {
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  @content;
+}
+
+.btn-ops {
+  @include btn-ops;
+}

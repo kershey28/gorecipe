@@ -1,0 +1,66 @@
+@use '../abstracts/breakpoints';
+@use '../utilities/flow';
+
+.footer {
+  padding: 4rem 8rem;
+
+  @include breakpoints.respond(phone-reg) {
+    padding: 2rem;
+  }
+
+  //children-1
+  &__nav {
+    //layout
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+
+    @include breakpoints.respond(phone-reg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &--link {
+      //typography
+      font-size: var(--fs-body);
+      text-decoration: none;
+      text-align: center;
+      color: inherit;
+
+      //others
+      padding: 1.5rem;
+      border: 1px solid var(--clr-primary-300);
+      display: block;
+      transition: all 0.2s;
+
+      &:hover,
+      &:focus {
+        transform: translateY(-3px);
+        background-color: var(--clr-accent-opacity-100);
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &:active {
+        transform: translateY(3px);
+      }
+    }
+  }
+
+  //children-2
+  &__copyright {
+    //typography
+    font-size: var(--fs-body);
+    text-align: center;
+
+    //alignment
+    margin-top: flow.$margin-md;
+    margin-right: auto;
+    margin-left: auto;
+
+    width: max-content;
+  }
+}

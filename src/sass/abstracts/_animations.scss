@@ -1,0 +1,200 @@
+@use '../abstracts/variables';
+
+// move
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  80% {
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+//pulsate
+@keyframes pulsate--black {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1.3);
+    box-shadow: variables.$shadow-black-dark;
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+//transition
+@keyframes hero-transition-out {
+  0% {
+    height: 100vh;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes app-transition-in {
+  0% {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  50% {
+    height: var(--app-height);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    height: var(--app-height);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes page-transition-in {
+  0% {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  50% {
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes page-transition-out {
+  0% {
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+// Carousel
+@keyframes carousel {
+  0%,
+  17.5% {
+    transform: translateZ(-35vw) rotateY(0);
+  }
+  27.5%,
+  45% {
+    transform: translateZ(-35vw) rotateY(-120deg);
+  }
+  55%,
+  72.5% {
+    transform: translateZ(-35vw) rotateY(-240deg);
+  }
+  82.5%,
+  100% {
+    transform: translateZ(-35vw) rotateY(-360deg);
+  }
+}
+
+// Checkbox
+@keyframes jelly {
+  from {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.25, 0.75);
+  }
+  40% {
+    transform: scale(0.75, 1.25);
+  }
+  50% {
+    transform: scale(1.15, 0.85);
+  }
+  65% {
+    transform: scale(0.95, 1.05);
+  }
+  75% {
+    transform: scale(1.05, 0.95);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+
+//Error
+@keyframes remove-error {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  90% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

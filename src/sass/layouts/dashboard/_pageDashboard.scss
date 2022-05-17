@@ -1,0 +1,49 @@
+@use '../../abstracts/breakpoints';
+@use '../../utilities/flow';
+
+.pageDashboard {
+  position: relative;
+
+  //children-1
+  &__logo {
+    margin-top: flow.$margin-sm;
+  }
+
+  //children-2
+  &__greetings {
+    text-align: center;
+    background-color: white;
+    z-index: 5;
+  }
+
+  &__cook,
+  &__username {
+    font-weight: 700;
+    color: var(--clr-accent-400);
+  }
+
+  &__username {
+    text-transform: capitalize;
+  }
+
+  //children-3
+  &__operation {
+    z-index: 5;
+  }
+
+  //children-4
+  &__search-results {
+    margin-bottom: flow.$margin-md;
+  }
+
+  //children-5
+  &__carousel {
+    margin-bottom: flow.$margin-lg;
+  }
+
+  //children-6
+  &__btn-reset {
+    align-self: center;
+    margin-top: flow.$margin-md;
+  }
+}

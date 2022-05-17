@@ -1,0 +1,30 @@
+@use '../abstracts/breakpoints';
+
+// main Container
+.container-main {
+  background-color: var(--clr-neutral-100);
+  overflow: hidden;
+}
+
+// children of Main Container
+// .hero {
+//   background-image: linear-gradient(
+//     to top right,
+//     var(--clr-primary-400),
+//     var(--clr-primary-400),
+//     var(--clr-primary-300)
+//   );
+// }
+
+//children of App
+.app {
+  background-color: var(--clr-neutral-100);
+
+  &__pageDashboard {
+    background-color: var(--clr-neutral-100);
+  }
+
+  &__pageRecipe {
+    background-color: var(--clr-neutral-100);
+  }
+}

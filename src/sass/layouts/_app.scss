@@ -1,0 +1,28 @@
+@use '../abstracts/breakpoints';
+
+.app {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+
+  //TEST
+  // height: 100%;
+
+  &__pageDashboard {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+
+    //TEST
+    // height: auto;
+  }
+
+  &__pageRecipe {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+
+    //TEST
+    // height: 100vh;
+  }
+}

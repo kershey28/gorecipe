@@ -1,0 +1,13 @@
+@use '../../utilities/flow';
+
+.features {
+  margin-block: flow.$margin-md;
+
+  &__heading {
+    text-align: center;
+    margin-bottom: flow.$margin-md;
+    &__span {
+      color: var(--clr-accent-300);
+    }
+  }
+}

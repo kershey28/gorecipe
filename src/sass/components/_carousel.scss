@@ -1,0 +1,201 @@
+@use '../abstracts/variables';
+@use '../abstracts/breakpoints';
+@use '../utilities/flow';
+
+.carousel {
+  //position
+  position: relative;
+  margin: 0;
+
+  //sizing
+  width: 60vw;
+  height: 40vw;
+  max-width: 380px;
+  max-height: 250px;
+
+  //styling
+  perspective: 1000px;
+  transform-origin: center;
+
+  &__heading {
+    text-align: center;
+    color: var(--clr-accent-100);
+    font-size: 5rem;
+    margin-bottom: flow.$margin-md;
+  }
+
+  // the element that rotates with the animation
+  &__content {
+    //position
+    position: absolute;
+
+    //sizing
+    width: 100%;
+    height: 100%;
+
+    //styling
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform: translateZ(-30vw) rotateY(0);
+    animation: carousel 10s infinite cubic-bezier(0.77, 0, 0.175, 1) forwards;
+
+    &.step-animation {
+      animation: carousel 8s infinite steps(1) forwards;
+    }
+  }
+
+  // Individual cards
+  &__item {
+    //position
+    position: absolute;
+    inset: 0;
+
+    //sizing
+    width: 60vw;
+    height: 50vw;
+    max-width: 380px;
+    max-height: 250px;
+
+    //styling
+    box-shadow: variables.$shadow-black-light;
+    transform-origin: center;
+    background-color: var(--clr-neutral-100);
+    border-radius: 15px;
+    border: 1px solid var(--clr-neutral-200);
+
+    //alignment
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    @include breakpoints.respond(phone-reg) {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    &:nth-child(1) {
+      transform: rotateY(0) translateZ(35vw);
+    }
+
+    &:nth-child(2) {
+      transform: rotateY(120deg) translateZ(35vw);
+    }
+
+    &:nth-child(3) {
+      transform: rotateY(240deg) translateZ(35vw);
+    }
+  }
+
+  &__img {
+    @include breakpoints.respond(phone-reg) {
+      margin-top: 2rem;
+    }
+
+    // 450px
+    @media only screen and (max-width: 28.125em) {
+      width: 10rem;
+    }
+    &--3 {
+      width: 18rem;
+
+      // 450px
+      @media only screen and (max-width: 28.125em) {
+        width: 10rem;
+      }
+    }
+  }
+
+  &__text {
+    font-size: 4rem;
+    font-style: italic;
+    color: var(--clr-primary-500);
+
+    // 450px
+    @media only screen and (max-width: 28.125em) {
+      font-size: 3rem;
+    }
+  }
+}
+
+// Checkbox
+// .carousel-checkbox {
+//   //position
+//   position: relative;
+//   margin-top: 2rem;
+
+//   //typography
+//   font-size: 0.9rem;
+//   font-weight: bold;
+//   text-transform: uppercase;
+//   color: var(--clr-primary-500);
+
+//   //misc
+//   transition: color 0.3s ease;
+//   user-select: none;
+
+//   &:hover {
+//     color: var(--clr-accent-300);
+//   }
+
+//   // Checkbox
+
+//   &__checkbox {
+//     //position
+//     position: relative;
+//     top: 0;
+
+//     //sizing
+//     width: 1.0625rem;
+//     height: 1.0625rem;
+
+//     //styling
+//     background-color: var(--clr-neutral-100);
+//     border: 1px solid currentColor;
+//     border-radius: 4px;
+//     vertical-align: middle;
+//     transition: background 0.1s ease;
+//     cursor: pointer;
+
+//     &::after {
+//       //position
+//       content: '';
+//       position: absolute;
+//       top: 1px;
+//       left: 5px;
+
+//       //sizing
+//       width: 5px;
+//       height: 11px;
+
+//       //styling
+//       opacity: 0;
+//       transform: rotate(45deg) scale(0);
+//       border-right: 2px solid #fff;
+//       border-bottom: 2px solid #fff;
+//       transition: all 0.3s ease;
+//       transition-delay: 0.15s;
+//     }
+//   }
+
+//   // Label
+
+//   &__label {
+//     margin-left: 5px;
+//     vertical-align: middle;
+//     cursor: pointer;
+//   }
+
+//   // Animate it if checkbo is checked
+
+//   > input:checked ~ .carousel-checkbox__checkbox {
+//     border-color: transparent;
+//     background: #f47956;
+//     animation: jelly 0.6s ease;
+
+//     &:after {
+//       opacity: 1;
+//       transform: rotate(45deg) scale(1);
+//     }
+//   }
+// }

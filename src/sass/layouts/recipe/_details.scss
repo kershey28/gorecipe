@@ -1,0 +1,70 @@
+@use '../../abstracts/breakpoints';
+@use '../../utilities/flow';
+
+.recipe {
+  &__details {
+    padding: 7.5rem 5rem 3.5rem 5rem;
+  }
+
+  //children 1 and 2
+  &__info {
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-right: 4.5rem;
+
+      @include breakpoints.respond(phone-reg) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__info-icon {
+    margin-right: 1.15rem;
+  }
+
+  &__info-data {
+    margin-right: 0.5rem;
+    font-weight: 700;
+  }
+
+  &__info-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-left: 1.6rem;
+    transform: translateY(-1px);
+  }
+
+  //children-3
+  &__pins {
+    display: flex;
+    gap: 2rem;
+
+    @include breakpoints.respond(phone-reg) {
+      margin-bottom: flow.$margin-md;
+    }
+  }
+
+  &__user-generated {
+    //styling
+    background-color: var(--clr-primary-300);
+    border-radius: 10rem;
+
+    //alignment
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    //sizing
+    height: 4rem;
+    width: 4rem;
+  }
+
+  &__bookmarks {
+    transform: translateY(0.2rem);
+    animation: pulsate--black ease-in 2s 5;
+  }
+}

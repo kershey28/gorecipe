@@ -1,0 +1,172 @@
+@use '../abstracts/variables';
+@use '../abstracts/breakpoints';
+
+.card-float {
+  //styling
+  border: 1px solid var(--clr-accent-300);
+  background-color: var(--clr-neutral-100);
+  border-radius: 20px;
+  box-shadow: variables.$shadow-black-dark;
+
+  //others
+  position: relative;
+
+  &__box {
+    position: relative;
+    width: 320px;
+    height: 450px;
+
+    @include breakpoints.respond(tab-port) {
+      width: 280px;
+    }
+
+    @include breakpoints.respond(phone-reg) {
+      width: 320px;
+    }
+
+    @include breakpoints.respond(phone-mini) {
+      width: 280px;
+    }
+
+    &:after {
+      //position
+      content: 'GORECIPE';
+      position: absolute;
+      top: 60%;
+      left: 10%;
+
+      //typography
+      font-size: 6rem;
+      font-family: var(--ff-accent);
+      font-weight: 800;
+      font-style: italic;
+      color: var(--clr-primary-opacity-300);
+    }
+
+    &:hover &__circle {
+      clip-path: circle(300px at 80% -20%);
+      background-color: var(--clr-primary-500);
+    }
+  }
+
+  &__circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+
+    //sizing
+    width: 100%;
+    height: 100%;
+
+    //styling
+    background-color: var(--clr-primary-300);
+    clip-path: circle(150px at 80% 20%);
+    transition: 0.5s ease-in-out;
+  }
+
+  &__img-box {
+    //position
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+
+    //sizing
+    width: 100%;
+    height: 220px;
+    transform: translateY(-50%);
+    transition: 0.5s;
+  }
+
+  &__box:hover &__img-box {
+    top: 0%;
+    transform: translateY(-10%);
+  }
+
+  &__img {
+    //position
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    //sizing
+    transform: translate(-50%, -50%) rotate(-25deg);
+    width: 270px;
+
+    @include breakpoints.respond(phone-mini) {
+      width: 250px;
+    }
+  }
+
+  &__content-box {
+    //position
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+
+    //sizing
+    width: 100%;
+    height: 100px;
+
+    //others
+    text-align: center;
+    transition: 1s;
+  }
+
+  &__box:hover &__content-box {
+    height: 210px;
+  }
+
+  &__heading {
+    position: relative;
+    top: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--clr-accent-300);
+  }
+
+  &__text {
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__box:hover &__text {
+    visibility: visible;
+    opacity: 0.5;
+  }
+
+  &__box:hover &__text--1 {
+    transition-delay: 0.5s;
+  }
+
+  &__box:hover &__text--2 {
+    transition-delay: 0.6s;
+  }
+
+  &__btn {
+    //styling
+    background-color: var(--clr-neutral-100);
+    border-radius: 4px;
+
+    //position
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 1rem;
+
+    //appearance
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.5s;
+
+    @include breakpoints.respond(phone-reg) {
+      margin-top: 3rem;
+    }
+  }
+
+  &__box:hover &__btn {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: 0.75s;
+  }
+}

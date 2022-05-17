@@ -1,0 +1,100 @@
+@use "breakpoints";
+@use "variables";
+
+// Carousel
+$slide-scale: (
+  "regular": (
+    width: 65rem,
+    height: 50rem,
+  ),
+  "small": (
+    width: 90vw,
+    height: 40rem,
+  ),
+);
+
+:root {
+  @each $size, $props in $slide-scale {
+    @if $size == "regular" {
+      @each $prop, $value in $props {
+        --slide-size-#{$prop}: #{$value};
+      }
+    } @else {
+      //730px
+      @media only screen and (max-width: 45.625em) {
+        @each $prop, $value in $props {
+          --slide-size-#{$prop}: #{$value};
+        }
+      }
+    }
+  }
+}
+
+// Photos
+$photo-scale: (
+  "regular": (
+    width: 35rem,
+    height: 25rem,
+  ),
+  "small": (
+    width: 30rem,
+    height: 20rem,
+  ),
+);
+
+:root {
+  @each $size, $props in $photo-scale {
+    @if $size == "regular" {
+      @each $prop, $value in $props {
+        --photo-size-#{$prop}: #{$value};
+      }
+    } @else {
+      @include breakpoints.respond(phone-reg) {
+        @each $prop, $value in $props {
+          --photo-size-#{$prop}: #{$value};
+        }
+      }
+    }
+  }
+}
+
+.photo {
+  width: var(--photo-size-width);
+  height: var(--photo-size-height);
+  object-fit: cover;
+  box-shadow: variables.$shadow-black-dark;
+}
+
+// Roamers
+$roamer-scale: (
+  "regular": (
+    width: 15rem,
+    height: 25rem,
+  ),
+  "small": (
+    width: 10rem,
+    height: 20rem,
+  ),
+);
+
+:root {
+  @each $size, $props in $roamer-scale {
+    @if $size == "regular" {
+      @each $prop, $value in $props {
+        --roamer-size-#{$prop}: #{$value};
+      }
+    } @else {
+      @include breakpoints.respond(phone-reg) {
+        @each $prop, $value in $props {
+          --roamer-size-#{$prop}: #{$value};
+        }
+      }
+    }
+  }
+}
+
+.roamer {
+  position: absolute;
+  width: var(--roamer-size-width);
+  height: var(--roamer-size-height);
+}

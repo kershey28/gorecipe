@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="src/assets/img/main/chef.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Concert+One&family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="src/sass/main.scss" />
+    <script type="module" defer src="src/js/controller.js"></script>
+
+    <title>Gorecipe</title>
+  </head>
+
+  <body>
+    <!--Main Container-->
+    <div class="container-main">
+      <!--Home-->
+      <div class="home" id="home">
+        <!--Hero-->
+        <header class="hero hero-animation" id="hero">
+          <div class="hero__content">
+            <div class="logo hero__logo">
+              <p class="logo__heading">
+                <span class="logo__span">go</span>recipe
+              </p>
+              <img class="logo__icon" src="src/assets/img/main/chef.png" />
+            </div>
+
+            <div class="hero__text-box">
+              <h1 class="heading-display hero__heading gradient--white-subtle">
+                Your handy
+                <span class="hero__heading__span">to-cook</span>
+                list
+              </h1>
+            </div>
+
+            <button class="btn-cta hero__btn btn-start">Go now!</button>
+          </div>
+
+          <div class="hero__img-box">
+            <picture>
+              <source
+                media="(min-width: 601px)"
+                srcset="src/assets/img/main/hero.png"
+              />
+              <source
+                media="(max-width: 600px)"
+                srcset="src/assets/img/main/hero-small.png"
+              />
+              <img
+                src="src/assets/img/main/hero-small.png"
+                alt="plate of food"
+                class="hero__img"
+              />
+            </picture>
+          </div>
+
+          <!--Get Username Modal-->
+          <div class="overlay-user overlay hidden"></div>
+          <div class="hero__form-user form-user hidden">
+            <div class="form-user__container">
+              <button class="btn--close-modal-user form-user__btn-close">
+                &times;
+              </button>
+              <h2 class="form-user__heading heading-2">
+                Let's
+                <span class="form-user__span">go</span>
+                and find
+                <span class="form-user__span">recipes</span>!
+              </h2>
+              <form class="form-user__content">
+                <input
+                  type="text"
+                  class="form-user__input"
+                  placeholder="your name"
+                  id="username"
+                />
+                <label for="username" class="form-user__label">Gorecipe</label>
+                <button class="btn-ghost form-user__btn">Start</button>
+              </form>
+            </div>
+          </div>
+        </header>
+        <!--Hero End-->
+
+        <!--APP-->
+        <main class="app" id="app">
+          <!--Page Dashboard-->
+          <div class="app__pageDashboard pageDashboard" id="pageDashboard">
+            <div class="logo pageDashboard__logo">
+              <p class="logo__heading">
+                <span class="logo__span">go</span>recipe
+              </p>
+              <img class="logo__icon" src="src/assets/img/main/chef.png" />
+            </div>
+
+            <div class="pageDashboard__greetings">
+              <h2 class="pageDashboard__heading heading-2">
+                What are we going
+                <span class="pageDashboard__cook">to cook</span>
+                next
+                <span class="username pageDashboard__username">kershey</span>?
+              </h2>
+            </div>
+
+            <div class="operation pageDashboard__operation">
+              <form class="search operation__search">
+                <input
+                  type="text"
+                  id="search"
+                  class="search__input"
+                  placeholder="Search over 1,000,000 recipes..."
+                />
+                <label for="search" class="search__label"
+                  >Search over 1,000,000 recipes..</label
+                >
+                <button class="btn-cta btn-search search__btn">
+                  <svg class="icon-primary">
+                    <use href="src/assets/svg/sprite.svg#icon-search"></use>
+                  </svg>
+                  <span>Search</span>
+                </button>
+              </form>
+
+              <button
+                class="btn-text--primary btn-add-recipe operation__add-recipe"
+              >
+                <svg class="icon-primary">
+                  <use href="src/assets/svg/sprite.svg#icon-spoon-knife"></use>
+                </svg>
+                <span>Add recipe</span>
+              </button>
+
+              <button
+                class="btn-text--primary btn-bookmarks operation__bookmarks"
+              >
+                <svg class="icon-primary">
+                  <use
+                    href="src/assets/svg/sprite.svg#icon-heart-outlined"
+                  ></use>
+                </svg>
+                <span>Bookmarks</span>
+              </button>
+              <div class="bookmarks">
+                <ul class="bookmarks__list">
+                  <div class="message">
+                    <div>
+                      <svg>
+                        <use href="src/assets/svg/sprite.svg#icon-hand"></use>
+                      </svg>
+                    </div>
+                    <p>
+                      No bookmarks yet. Find a nice recipe and bookmark it :)
+                    </p>
+                  </div>
+
+                  <!-- <li class="preview">
+                    <a class="preview__link" href="#23456">
+                      <figure class="preview__fig">
+                        <img
+                          src="src/assets/img/main/hero-small.png"
+                          alt="plate of food"
+                          class="preview__img"
+                        />
+                      </figure>
+                      <div class="preview__data">
+                        <h4 class="preview__title">
+                          Pasta with Tomato Cream Apple Eggpie Cake Marshmallow
+                        </h4>
+                        <p class="preview__publisher">The Pioneer Woman</p>
+                        <div class="preview__user-generated">
+                          <svg class="preview__svg">
+                            <use
+                              href="src/assets/svg/sprite.svg#icon-user"
+                            ></use>
+                          </svg>
+                        </div>
+                      </div>
+                    </a>
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+
+            <div class="pageDashboard__features features">
+              <h1 class="features__heading heading-1">
+                Top <span class="features__heading__span">Searched </span> Foods
+              </h1>
+
+              <div class="features__content">
+                <div class="card-float">
+                  <div class="card-float__box">
+                    <div class="card-float__circle"></div>
+                    <div class="card-float__img-box">
+                      <img
+                        src="src/assets/img/features/feature1.png"
+                        alt="cheesecake plate"
+                        class="card-float__img"
+                      />
+                    </div>
+                    <div class="card-float__content-box">
+                      <h2 class="card-float__heading heading-2">Top 1</h2>
+                      <h3 class="card-float__text--1 card-float__text">
+                        Yogurt Cheesecake
+                      </h3>
+                      <h3 class="card-float__text--2 card-float__text">
+                        Caramel Cheesecake
+                      </h3>
+                      <button class="card-float__btn btn-ghost btn-feature--1">
+                        Cheesecake
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-float">
+                  <div class="card-float__box">
+                    <div class="card-float__circle"></div>
+                    <div class="card-float__img-box">
+                      <img
+                        src="src/assets/img/features/feature2.png"
+                        alt="chicken plate"
+                        class="card-float__img"
+                      />
+                    </div>
+                    <div class="card-float__content-box">
+                      <h2 class="card-float__heading heading-2">Top 2</h2>
+                      <h3 class="card-float__text--1 card-float__text">
+                        Chicken Salad
+                      </h3>
+                      <h3 class="card-float__text--2 card-float__text">
+                        Chicken Spaghetti
+                      </h3>
+                      <button class="card-float__btn btn-ghost btn-feature--2">
+                        Chicken
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-float">
+                  <div class="card-float__box">
+                    <div class="card-float__circle"></div>
+                    <div class="card-float__img-box">
+                      <img
+                        src="src/assets/img/features/feature3.png"
+                        alt="paella plate"
+                        class="card-float__img"
+                      />
+                    </div>
+                    <div class="card-float__content-box">
+                      <h2 class="card-float__heading heading-2">Top 3</h2>
+                      <h3 class="card-float__text--1 card-float__text">
+                        Paella Fried Rice
+                      </h3>
+                      <h3 class="card-float__text--2 card-float__text">
+                        Seafood Paella
+                      </h3>
+                      <button class="card-float__btn btn-ghost btn-feature--3">
+                        Paella
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-float">
+                  <div class="card-float__box">
+                    <div class="card-float__circle"></div>
+                    <div class="card-float__img-box">
+                      <img
+                        src="src/assets/img/features/feature4.png"
+                        alt="avocado plate"
+                        class="card-float__img"
+                      />
+                    </div>
+                    <div class="card-float__content-box">
+                      <h2 class="card-float__heading heading-2">Top 4</h2>
+                      <h3 class="card-float__text--1 card-float__text">
+                        Avocado Chicken
+                      </h3>
+                      <h3 class="card-float__text--2 card-float__text">
+                        Creamy Avocado Pasta
+                      </h3>
+                      <button class="card-float__btn btn-ghost btn-feature--4">
+                        Avocado
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <figure class="carousel pageDashboard__carousel">
+              <h1 class="carousel__heading heading-1">Go&#x2193;</h1>
+
+              <div class="carousel__content">
+                <div
+                  class="carousel__item d-flex align-items-center justify-content-center"
+                >
+                  <img
+                    src="src/assets/img/carousel/search.png"
+                    alt="avocado plate"
+                    class="carousel__img"
+                  />
+                  <h3 class="carousel__text">Search</h3>
+                </div>
+                <div
+                  class="carousel__item d-flex align-items-center justify-content-center"
+                >
+                  <img
+                    src="src/assets/img/carousel/share.png"
+                    alt="avocado plate"
+                    class="carousel__img"
+                  />
+                  <h3 class="carousel__text">Share</h3>
+                </div>
+                <div
+                  class="carousel__item d-flex align-items-center justify-content-center"
+                >
+                  <img
+                    src="src/assets/img/carousel/savour.png"
+                    alt="avocado plate"
+                    class="carousel__img carousel__img--3"
+                  />
+                  <h3 class="carousel__text">Savour</h3>
+                </div>
+              </div>
+            </figure>
+
+            <!-- <div class="carousel-checkbox">
+              <input
+                class="d-none"
+                id="toggle-animation"
+                type="checkbox"
+                checked
+              />
+              <label
+                class="carousel-checkbox__checkbox"
+                for="toggle-animation"
+              ></label>
+              <label class="carousel-checkbox__label" for="toggle-animation"
+                >Toggle animation</label
+              >
+            </div> -->
+
+            <div class="search-results pageDashboard__search-results">
+              <ul class="results search-results__results">
+                <div class="message results__message">
+                  <div>
+                    <svg class="icon-primary">
+                      <use href="src/assets/svg/sprite.svg#icon-hand"></use>
+                    </svg>
+                  </div>
+                  <p>
+                    Start by searching for a recipe or an ingredient. Have fun!
+                  </p>
+                </div>
+
+                <!--Result JS-->
+                <!-- <li class="preview">
+                  <a class="preview__link" href="#23456">
+                    <figure class="preview__fig">
+                      <img
+                        src="src/assets/img/main/hero-small.png"
+                        alt="plate of food"
+                        class="preview__img"
+                      />
+                    </figure>
+                    <div class="preview__data">
+                      <h4 class="preview__title">
+                        Pasta with Tomato Cream Apple Eggpie Cake Marshmallow
+                      </h4>
+                      <p class="preview__publisher">The Pioneer Woman</p>
+                      <div class="preview__user-generated">
+                        <svg class="preview__svg">
+                          <use href="src/assets/svg/sprite.svg#icon-user"></use>
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </li> -->
+
+                <!--Result JS End-->
+              </ul>
+
+              <div class="pagination search-results__pagination">
+                <!--Pagination JS-->
+                <!-- <button
+                  class="btn-text--primary pagination__btn--prev btn--inline"
+                >
+                  <svg class="pagination__icon icon-primary">
+                    <use
+                      href="src/assets/svg/sprite.svg#icon-arrow-left2"
+                    ></use>
+                  </svg>
+                  <span>Page 1</span>
+                </button>
+                <button
+                  class="btn-text--primary pagination__btn--next btn--inline"
+                >
+                  <span>Page 3</span>
+                  <svg class="pagination__icon icon-primary">
+                    <use
+                      href="src/assets/svg/sprite.svg#icon-arrow-right2"
+                    ></use>
+                  </svg>
+                </button> -->
+                <!--Pagination JS-->
+              </div>
+
+              <button class="btn-reset btn-ghost pageDashboard__btn-reset">
+                <span>Reset</span>
+                <svg class="icon-primary">
+                  <use href="src/assets/svg/sprite.svg#icon-switch"></use>
+                </svg>
+              </button>
+            </div>
+
+            <!--Add Recipe Modal-->
+            <div class="overlay overlay-recipe hidden"></div>
+            <div class="add-recipe-window hidden">
+              <button class="btn--close-modal">&times;</button>
+              <form class="upload">
+                <div class="upload__column upload__data">
+                  <h3 class="upload__heading">Recipe data</h3>
+                  <label>Title</label>
+                  <input
+                    value="Boiled Egg Ala Carte"
+                    required
+                    name="title"
+                    type="text"
+                  />
+                  <label>URL</label>
+                  <input
+                    value="gorecipe.com"
+                    required
+                    name="sourceUrl"
+                    type="text"
+                  />
+                  <label>Image URL</label>
+                  <input
+                    value="gorecipe.com"
+                    required
+                    name="image"
+                    type="text"
+                  />
+                  <label>Publisher</label>
+                  <input
+                    value="yourname"
+                    required
+                    name="publisher"
+                    type="text"
+                  />
+                  <label>Prep time</label>
+                  <input
+                    placeholder="minutes"
+                    required
+                    name="cookingTime"
+                    type="number"
+                  />
+                  <label>Servings</label>
+                  <input
+                    placeholder="good for how many persons"
+                    required
+                    name="servings"
+                    type="number"
+                  />
+                </div>
+
+                <div class="upload__column upload__ingredients">
+                  <h3 class="upload__heading">Ingredients</h3>
+                  <label>Ingredient 1</label>
+                  <input
+                    value="0.5,kg,Rice"
+                    type="text"
+                    required
+                    name="ingredient-1"
+                    placeholder="Format: 'Quantity,Unit,Description'"
+                  />
+                  <label>Ingredient 2</label>
+                  <input
+                    value="5,pcs,Egg"
+                    type="text"
+                    name="ingredient-2"
+                    placeholder="Format: 'Quantity,Unit,Description'"
+                  />
+                  <label>Ingredient 3</label>
+                  <input
+                    value=",,salt"
+                    type="text"
+                    name="ingredient-3"
+                    placeholder="Format: 'Quantity,Unit,Description'"
+                  />
+                  <label>Ingredient 4</label>
+                  <input
+                    type="text"
+                    name="ingredient-4"
+                    placeholder="Format: 'Quantity,Unit,Description'"
+                  />
+                  <label>Ingredient 5</label>
+                  <input
+                    type="text"
+                    name="ingredient-5"
+                    placeholder="Format: 'Quantity,Unit,Description'"
+                  />
+                  <label>Ingredient 6</label>
+                  <input
+                    type="text"
+                    name="ingredient-6"
+                    placeholder="Format: 'Quantity,Unit,Description'"
+                  />
+                </div>
+
+                <button class="btn-cta upload__btn btn-upload">
+                  <svg class="icon-white">
+                    <use
+                      href="src/assets/svg/sprite.svg#icon-cloud-upload"
+                    ></use>
+                  </svg>
+                  <span>Upload</span>
+                </button>
+              </form>
+            </div>
+            <!--Add Recipe Modal End-->
+          </div>
+          <!--Page Dashboard End-->
+
+          <!--Page Recipe-->
+          <div class="app__pageRecipe pageRecipe" id="pageRecipe">
+            <!--Spinner-->
+            <!-- <div class="cooking spinner">
+              <h1 class="cooking__text">Cooking in progress..</h1>
+              <div class="cooking__cook">
+                <div class="cooking__bubble"></div>
+                <div class="cooking__bubble"></div>
+                <div class="cooking__bubble"></div>
+                <div class="cooking__bubble"></div>
+                <div class="cooking__bubble"></div>
+                <div class="cooking__area">
+                  <div class="cooking__sides">
+                    <div class="cooking__pan"></div>
+                    <div class="cooking__handle"></div>
+                  </div>
+                  <div class="cooking__pancake">
+                    <div class="cooking__pastry"></div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <!--Error-->
+            <!-- <div class="error">
+              <div>
+                <svg>
+                  <use href="src/assets/svg/sprite.svg#icon-warning"></use>
+                </svg>
+              </div>
+              <p>No recipes found for your query. Please try again!</p>
+            </div> -->
+
+            <!--Recipe-->
+            <div class="recipe pageRecipe__recipe">
+              <!-- <div class="message recipe__message">
+                <div>
+                  <svg class="icon">
+                    <use href="src/assets/svg/sprite.svg#icon-hand"></use>
+                  </svg>
+                </div>
+                <p>
+                  Start by searching for a recipe or an ingredient. Have fun!
+                </p>
+              </div> -->
+
+              <!-- <figure class="recipe__fig pageRecipe__fig">
+                <img
+                  src="src/assets/img/main/hero-small.png"
+                  alt="Tomato"
+                  class="recipe__img"
+                />
+                <h1 class="recipe__title">
+                  <span class="recipe__title__span"
+                    >Pasta with tomato cream sauce</span
+                  >
+                </h1>
+              </figure>
+
+              <div class="recipe__details">
+                <div class="recipe__info recipe__time">
+                  <svg class="recipe__info-icon icon-primary">
+                    <use href="src/assets/svg/sprite.svg#icon-clock"></use>
+                  </svg>
+                  <span class="recipe__info-data recipe__info-data--minutes"
+                    >45</span
+                  >
+                  <span class="recipe__info-text">minutes</span>
+                </div>
+                <div class="recipe__info recipe__servings">
+                  <svg class="recipe__info-icon icon-primary">
+                    <use href="src/assets/svg/sprite.svg#icon-users"></use>
+                  </svg>
+                  <span class="recipe__info-data recipe__info-data--people"
+                    >4</span
+                  >
+                  <span class="recipe__info-text">servings</span>
+
+                  <div class="recipe__info-buttons">
+                    <button
+                      class="btn-ops btn--decrease-servings btn--update-servings"
+                    >
+                      <svg class="icon-white recipe__svg-ops">
+                        <use href="src/assets/svg/sprite.svg#icon-minus"></use>
+                      </svg>
+                    </button>
+                    <button
+                      class="btn-ops btn--increase-servings btn--update-servings"
+                    >
+                      <svg class="icon-white recipe__svg-ops">
+                        <use href="src/assets/svg/sprite.svg#icon-plus"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="recipe__pins">
+                  <div class="recipe__user-generated">
+                    <svg class="icon-white recipe__user-generated__svg">
+                      <use href="src/assets/svg/sprite.svg#icon-user"></use>
+                    </svg>
+                  </div>
+                  <button class="btn-ops recipe__bookmarks btn--bookmark">
+                    <svg class="icon-white">
+                      <use href="src/assets/svg/sprite.svg#icon-heart"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="recipe__ingredients">
+                <h2 class="heading-2 recipe__ingredients__heading">
+                  Recipe ingredients
+                </h2>
+                <ul class="recipe__ingredient-list">
+                  <li class="recipe__ingredient">
+                    <svg class="recipe__icon icon-primary">
+                      <use href="src/assets/svg/sprite.svg#icon-check"></use>
+                    </svg>
+                    <div class="recipe__quantity">1000</div>
+                    <div class="recipe__description">
+                      <span class="recipe__unit">g</span>
+                      pasta
+                    </div>
+                  </li>
+                  <li class="recipe__ingredient">
+                    <svg class="recipe__icon icon-primary">
+                      <use href="src/assets/svg/sprite.svg#icon-check"></use>
+                    </svg>
+                    <div class="recipe__quantity">0.5</div>
+                    <div class="recipe__description">
+                      <span class="recipe__unit">cup</span>
+                      ricotta cheese
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="recipe__directions">
+                <h2 class="heading-2 recipe__directions__heading">
+                  How to cook it
+                </h2>
+                <p class="recipe__directions-text">
+                  This recipe was carefully designed and tested by
+                  <span class="recipe__publisher">The Pioneer Woman</span>.
+                  Please check out directions at their website.
+                </p>
+                <a
+                  class="btn-cta recipe__btn-directions"
+                  href="http://thepioneerwoman.com/cooking/pasta-with-tomato-cream-sauce/"
+                  target="_blank"
+                >
+                  <span>Directions</span>
+                </a>
+              </div> -->
+            </div>
+
+            <!--Recipe End-->
+
+            <button class="btn-ghost btn-back pageRecipe__btn-back">
+              Back
+            </button>
+          </div>
+          <!--Page Recipe End-->
+
+          <!--Footer-->
+          <footer class="footer">
+            <ul class="footer__nav">
+              <li class="footer__nav--item">
+                <a href="#" class="footer__nav--link">Feedbacks</a>
+              </li>
+              <li class="footer__nav--item">
+                <a href="#" class="footer__nav--link">Contact me</a>
+              </li>
+              <li class="footer__nav--item">
+                <a href="#" class="footer__nav--link">Careers</a>
+              </li>
+              <li class="footer__nav--item">
+                <a href="#" class="footer__nav--link">Privacy Policy</a>
+              </li>
+              <li class="footer__nav--item">
+                <a href="#" class="footer__nav--link">Terms</a>
+              </li>
+            </ul>
+            <div class="footer__copyright">
+              <p>Built and designed by Kershey Cari&#241o for demo project only.</p>
+              <p>&copy; 2022</p>
+            </div>
+          </footer>
+          <!--Footer End-->
+        </main>
+        <!--APP End-->
+      </div>
+      <!--Home End-->
+    </div>
+    <!--Main Container End-->
+  </body>
+</html>

@@ -1,0 +1,53 @@
+@use '../../abstracts/breakpoints';
+
+.recipe {
+  &__fig {
+    height: 32rem;
+    position: relative;
+    transform-origin: top;
+  }
+
+  //children-1
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  //children-1
+  &__title {
+    //position
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+    //styling
+    transform: translate(-50%, 20%) skewY(-6deg);
+    color: var(--clr-neutral-100);
+    width: 100%;
+
+    //typography
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.95;
+    text-align: center;
+    font-size: 3.25rem;
+
+    @include breakpoints.respond(phone-reg) {
+      font-size: 2.25rem;
+    }
+
+    //word shade
+    &__span {
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      padding: 1.3rem 2rem;
+      background-image: linear-gradient(
+        to right top,
+        var(--clr-accent-100),
+        var(--clr-accent-200)
+      );
+    }
+  }
+}

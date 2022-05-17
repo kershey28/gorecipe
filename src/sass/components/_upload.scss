@@ -1,0 +1,142 @@
+@use '../abstracts/variables';
+@use '../abstracts/breakpoints';
+@use '../utilities/flow';
+
+.add-recipe-window {
+  //position
+  position: fixed;
+  top: 50%; //50%
+  left: 50%;
+  z-index: 555;
+
+  //styling
+  transform: translate(-50%, -50%);
+  background-color: var(--clr-neutral-100);
+  border-radius: 9px;
+  box-shadow: variables.$shadow-black-dark;
+  transition: all 0.5s;
+
+  //sizing
+  padding: 5rem 6rem;
+  width: 85%;
+  min-width: 85rem; //must coordinate with Input width
+
+  @include breakpoints.respond(tab-port) {
+    min-width: 45rem;
+    position: absolute;
+    top: 900px;
+  }
+
+  @include breakpoints.respond(phone-reg) {
+    width: 90%;
+    min-width: 35rem;
+    padding: 2rem 6rem;
+  }
+
+  @include breakpoints.respond(phone-mini) {
+    padding: 2rem 3rem;
+    min-width: 25rem;
+  }
+
+  .btn--close-modal {
+    //position
+    top: 0.5rem;
+    right: 1.6rem;
+    position: absolute;
+
+    //styling
+    font-family: inherit;
+    color: inherit;
+    background-color: transparent;
+    font-size: 3.5rem;
+
+    //default
+    cursor: pointer;
+    border: none;
+  }
+}
+
+.overlay {
+  //position
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  //sizing
+  width: 100%;
+  height: 100%;
+
+  //styling
+  background-color: var(--clr-black-opacity-200);
+  backdrop-filter: blur(4px);
+  transition: all 0.5s;
+}
+
+.upload {
+  //children 1 and 2
+  &__column {
+    //alignment
+    display: grid;
+    grid-template-columns: 1fr 2.8fr;
+    align-items: center;
+    gap: 1.5rem;
+
+    @include breakpoints.respond(phone-reg) {
+      grid-template-columns: 1fr;
+    }
+
+    & label {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--clr-accent-300);
+    }
+
+    & input {
+      //styling
+      border: 1px solid var(--clr-neutral-300);
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+
+      //sizing
+      font-size: 1.5rem;
+      padding: 0.8rem 1rem;
+
+      @include breakpoints.respond(phone-reg) {
+        min-width: 25rem;
+      }
+
+      @include breakpoints.respond(phone-mini) {
+        min-width: 20rem;
+      }
+
+      &::placeholder {
+        opacity: 0.5;
+      }
+
+      &:focus {
+        outline: none;
+        border: 1px solid var(--clr-accent-300);
+        background-color: var(--clr-neutral-100);
+      }
+    }
+
+    & button {
+      grid-column: 1 / span 2;
+      justify-self: center;
+      margin-top: 1rem;
+    }
+  }
+
+  &__heading {
+    //typography
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--clr-accent-300);
+
+    //alignment
+    margin-bottom: 1rem;
+    grid-column: 1/-1;
+  }
+}

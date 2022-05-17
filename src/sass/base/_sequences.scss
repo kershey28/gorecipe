@@ -1,0 +1,11 @@
+@use '../abstracts/breakpoints';
+
+.hero-animation {
+  & .hero__img-box {
+    animation: moveInRight 1s backwards ease-out 1.5s;
+
+    @include breakpoints.respond(tab-port) {
+      animation: moveInBottom 1s backwards ease-out 1.5s;
+    }
+  }
+}

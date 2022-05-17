@@ -1,0 +1,140 @@
+@use '../abstracts/breakpoints';
+@use '../utilities/flow';
+
+.preview {
+  margin-bottom: flow.$margin-mn;
+
+  &__link {
+    &:link,
+    &:visited {
+      //alignment
+      display: flex;
+      align-items: center;
+
+      //styling
+      border: 1px solid var(--clr-primary-400);
+      text-decoration: none;
+      background-color: transparent;
+      padding: 1.5rem 3.25rem;
+      transition: all 0.3s;
+
+      width: 50rem; //must coordinate with Title width
+
+      @include breakpoints.respond(tab-port) {
+        width: 40rem;
+      }
+
+      @include breakpoints.respond(phone-reg) {
+        width: 35rem;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      @include breakpoints.respond(phone-mini) {
+        width: 30rem;
+      }
+    }
+
+    &:hover {
+      background-color: var(--clr-primary-opacity-300);
+      transform: translateY(-2px);
+    }
+
+    &--active {
+      background-color: var(--clr-primary-opacity-300);
+    }
+  }
+
+  &__fig {
+    //alignment
+    flex: 0 0 5.8rem;
+    margin-right: 2rem;
+    position: relative;
+
+    //styling
+    border-radius: 50%;
+    backface-visibility: hidden;
+
+    //sizing
+    overflow: hidden;
+    height: 5.8rem;
+
+    @include breakpoints.respond(phone-reg) {
+      margin-right: 0;
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s;
+  }
+
+  &__data {
+    display: grid;
+    grid-template-columns: 1fr 2rem;
+    row-gap: 0.1rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__title {
+    grid-column: 1/-1;
+    font-size: 1.45rem;
+    color: var(--clr-accent-400);
+    text-transform: uppercase;
+    font-weight: 600;
+
+    // How text is truncated
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 32rem; //must coordinate with Preview width
+
+    @include breakpoints.respond(tab-port) {
+      width: 22rem;
+    }
+
+    @include breakpoints.respond(phone-reg) {
+      width: 25rem;
+    }
+
+    @include breakpoints.respond(phone-mini) {
+      width: 20rem;
+    }
+  }
+
+  &__publisher {
+    color: var(--clr-neutral-800);
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  &__user-generated {
+    //alignment
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    //sizing
+    height: 2rem;
+    width: 2rem;
+
+    //styling
+    background-color: var(--clr-accent-100);
+    border-radius: 10rem;
+
+    //margins
+    margin-left: auto;
+    margin-right: 1.75rem;
+  }
+
+  &__svg {
+    height: 1.2rem;
+    width: 1.2rem;
+    fill: var(--clr-neutral-100);
+  }
+}

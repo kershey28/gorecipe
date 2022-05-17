@@ -1,0 +1,81 @@
+@use '../abstracts/breakpoints';
+@use '../utilities/flow';
+@use '../abstracts/mixins';
+
+.hero {
+  height: 100vh;
+  position: relative;
+
+  //circle bg
+  @include mixins.bg-circle(bottom, $zIndex: 0) {
+    @include breakpoints.respond(tab-port) {
+      display: none;
+    }
+  }
+
+  //children-1
+  &__content {
+    max-width: 50rem;
+    position: relative;
+    left: 5rem;
+    z-index: 5;
+
+    @include breakpoints.respond(tab-port) {
+      top: 15%;
+      left: 0;
+    }
+  }
+
+  &__heading {
+    width: 50rem;
+
+    @include breakpoints.respond(phone-reg) {
+      max-width: 30rem;
+    }
+
+    &__span {
+      color: var(--clr-accent-300);
+    }
+  }
+
+  //children-2
+  &__img-box {
+    display: inline-block;
+    position: relative;
+
+    @include breakpoints.respond(tab-port) {
+      bottom: -30rem;
+    }
+
+    @include breakpoints.respond(phone-reg) {
+      bottom: -22rem;
+    }
+
+    //box bg
+    &::after {
+      content: '';
+      inset: -5rem -2rem -5rem 12rem;
+      position: absolute;
+      background-color: var(--clr-primary-300);
+      transform: rotate(10deg);
+
+      @include breakpoints.respond(tab-port) {
+        inset: 7rem -2rem 5rem -2rem;
+      }
+    }
+  }
+
+  &__img {
+    z-index: 3;
+    position: relative;
+  }
+
+  &__btn {
+    @include breakpoints.respond(tab-port) {
+      align-self: center;
+    }
+  }
+
+  //TEST
+  // display: none;
+}

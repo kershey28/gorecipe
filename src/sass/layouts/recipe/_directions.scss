@@ -1,0 +1,38 @@
+@use '../../utilities/flow';
+@use '../../abstracts/breakpoints';
+
+.recipe {
+  &__directions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 10rem;
+
+    @include breakpoints.respond(phone-reg) {
+      padding: 5rem 4rem;
+    }
+
+    //children-1
+    &__heading {
+      margin-bottom: flow.$margin-sm;
+      color: var(--clr-accent-300);
+    }
+  }
+
+  //children-2
+  &__directions-text {
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 3.5rem;
+    opacity: 0.5;
+  }
+
+  &__publisher {
+    font-weight: 700;
+  }
+
+  &__btn__svg {
+    position: relative;
+    top: 0.5rem;
+  }
+}

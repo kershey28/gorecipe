@@ -1,0 +1,82 @@
+@use '../abstracts/breakpoints';
+
+///////////////////////////////////////////
+// Gradients
+@mixin gradient($type) {
+  display: inline-block;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  @if $type == primary-regular {
+    background-image: linear-gradient(
+      to right,
+      var(--clr-primary-opacity-500),
+      var(--clr-primary-opacity-100)
+    );
+  }
+
+  @if $type == secondary-regular {
+    background-image: linear-gradient(
+      to right,
+      var(--clr-secondary-opacity-500),
+      var(--clr-secondary-opacity-100)
+    );
+  }
+
+  @if $type == primary-subtle {
+    background-image: linear-gradient(
+      to right,
+      var(--clr-primary-opacity-500),
+      var(--clr-primary-opacity-300)
+    );
+  }
+
+  @if $type == secondary-subtle {
+    background-image: linear-gradient(
+      to right,
+      var(--clr-secondary-opacity-500),
+      var(--clr-secondary-opacity-300)
+    );
+  }
+
+  @content;
+}
+
+.gradient {
+  &--primary-regular {
+    @include gradient(primary-regular);
+  }
+
+  &--secondary-regular {
+    @include gradient(secondary-regular);
+  }
+
+  &--primary-subtle {
+    @include gradient(primary-subtle);
+  }
+
+  &--secondary-subtle {
+    @include gradient(secondary-subtle);
+  }
+}
+
+///////////////////////////////////////////
+// Styles
+.stroke {
+  -webkit-text-stroke: 3px var(--clr-neutral-800);
+  color: transparent;
+  font-weight: 100;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.currency {
+  font-weight: 100;
+  opacity: 0.3;
+}
+
+///////////////////////////////////////////
+// Sections

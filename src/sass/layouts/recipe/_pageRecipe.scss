@@ -1,0 +1,17 @@
+@use '../../abstracts/breakpoints';
+
+.pageRecipe {
+  //children-1
+  &__recipe {
+    width: 100%;
+    position: relative;
+  }
+
+  &__fig {
+    margin-top: 3rem;
+  }
+
+  &__btn-back {
+    margin-bottom: 4rem;
+  }
+}

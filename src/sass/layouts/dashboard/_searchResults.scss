@@ -1,0 +1,33 @@
+@use '../../utilities/flow';
+
+.search-results {
+  margin-top: flow.$margin-lg;
+  padding-bottom: flow.$margin-sm;
+  display: flex;
+  flex-direction: column;
+
+  &__results {
+    list-style: none;
+    margin-bottom: flow.$margin-mn;
+  }
+}
+
+.pagination {
+  margin-top: auto;
+  padding-inline: flow.$padding-mn;
+
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  &__btn {
+    &--prev {
+      float: left;
+    }
+    &--next {
+      float: right;
+    }
+  }
+}

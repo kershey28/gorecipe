@@ -1,0 +1,62 @@
+@use '../../abstracts/variables';
+@use '../../utilities/flow';
+@use '../../abstracts/breakpoints';
+
+.bookmarks {
+  //position
+  position: absolute;
+  right: -2.5rem;
+  z-index: 10;
+  height: 50rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  //styling
+  background-color: var(--clr-neutral-100);
+  box-shadow: variables.$shadow-black-light;
+  border: 3px solid var(--clr-primary-500);
+
+  //appearance
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s 0.2s;
+
+  //sizing
+  padding-block: flow.$padding-mn;
+  width: 50rem; //must coordinate with Preview width
+
+  @include breakpoints.respond(tab-port) {
+    width: 40rem;
+  }
+
+  @include breakpoints.respond(phone-reg) {
+    width: 35rem;
+  }
+
+  @include breakpoints.respond(phone-mini) {
+    width: 30rem;
+  }
+  &__list {
+    list-style: none;
+  }
+
+  // &__field {
+  //   cursor: pointer;
+  //   padding: 0 4rem;
+
+  //   display: flex;
+  //   align-items: center;
+  //   height: 100%;
+  //   transition: all 0.3s;
+
+  //   &:hover {
+  //     background-color: var(--clr-primary-300);
+  //   }
+  // }
+
+  &:hover,
+  .btn-bookmarks:hover + & {
+    visibility: visible;
+    opacity: 1;
+  }
+}

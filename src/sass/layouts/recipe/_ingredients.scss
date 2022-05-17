@@ -1,0 +1,51 @@
+@use '../../utilities/flow';
+@use '../../abstracts/breakpoints';
+
+.recipe {
+  &__ingredients {
+    padding: 5rem 8rem;
+    font-size: 1.6rem;
+    line-height: 1.4;
+
+    @include breakpoints.respond(phone-reg) {
+      padding: 5rem 2rem;
+    }
+
+    //children-1
+    &__heading {
+      color: var(--clr-accent-300);
+    }
+  }
+
+  //children-2
+  &__ingredient-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 3rem;
+    list-style: none;
+
+    @include breakpoints.respond(phone-reg) {
+      grid-template-columns: 1fr;
+      padding-inline: flow.$padding-lg;
+    }
+
+    @include breakpoints.respond(phone-mini) {
+      padding-inline: flow.$padding-md;
+    }
+  }
+
+  &__ingredient {
+    display: flex;
+  }
+
+  &__icon {
+    margin-right: flow.$margin-mn;
+    flex: 0 0 auto;
+    margin-top: 0.1rem;
+  }
+
+  &__quantity {
+    margin-right: 0.5rem;
+    flex: 0 0 auto;
+  }
+}
