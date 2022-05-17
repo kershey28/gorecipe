@@ -74,23 +74,25 @@ const controlSearchResults = async function () {
   try {
     resultsView.renderSpinner();
 
-    // 0) Blur Input before Scroll
-    inputSearch.blur();
-
-    // 1) Scroll into Results
-    helpers.scrollInto(results);
-
-    // 2) Get search query
+    // 1) Get search query
     const query = searchView.getQuery();
     if (!query) return;
 
-    // 3) Load search results
+    // 2) Blur Input before Scroll
+    inputSearch.blur();
+
+    // 3) Scroll into Results
+    setTimeout(function () {
+      helpers.scrollInto(results);
+    }, 1000);
+
+    // 4) Load search results
     await model.loadSearchResults(query);
 
-    // 4) Render results
+    // 5) Render results
     resultsView.render(model.getSearchResultsPage());
 
-    // 5) Render initial pagination buttons
+    // 6) Render initial pagination buttons
     paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
