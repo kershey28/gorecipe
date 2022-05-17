@@ -23,6 +23,7 @@ import 'regenerator-runtime/runtime';
 const results = document.querySelector('.search-results');
 const recipeWindow = document.querySelector('.add-recipe-window');
 const cardFeatures = document.querySelectorAll('.card-float');
+const inputSearch = document.querySelector('.search__input');
 
 // Buttons
 const btnBack = document.querySelector('.btn-back');
@@ -72,6 +73,9 @@ const controlRecipes = async function () {
 const controlSearchResults = async function () {
   try {
     resultsView.renderSpinner();
+
+    // 0) Blur Input before Scroll
+    inputSearch.blur();
 
     // 1) Scroll into Results
     helpers.scrollInto(results);
@@ -186,8 +190,6 @@ const controlAddRecipe = async function (newRecipe) {
     // 9) Setting a bug-fixer from Upload (due to deleted innerHTML)
     uploadedARecipe = true;
 
-    console.log(uploadedARecipe);
-
     // 10) Transition to Recipe
     setTimeout(model.transitionToRecipe, config.TRANSITION_SEC * 1000);
   } catch (err) {
@@ -255,3 +257,6 @@ const init = function () {
 };
 
 init();
+
+//TEST
+console.log('TEST');

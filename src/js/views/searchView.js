@@ -1,5 +1,6 @@
 class SearchView {
   _parentEl = document.querySelector('.search');
+
   _featureEl1 = document.querySelector('.btn-feature--1');
   _featureEl2 = document.querySelector('.btn-feature--2');
   _featureEl3 = document.querySelector('.btn-feature--3');
