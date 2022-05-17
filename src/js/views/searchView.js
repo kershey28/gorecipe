@@ -1,5 +1,3 @@
-import { controlSearchTypesResults } from './../config';
-
 class SearchView {
   _parentEl = document.querySelector('.search');
   _featureEl1 = document.querySelector('.btn-feature--1');

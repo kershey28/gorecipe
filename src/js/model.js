@@ -1,5 +1,6 @@
 import { API_URL, RES_PER_PAGE, API_KEY } from './config.js';
-import { AJAX } from './helpers.js';
+import { AJAX, scrollInto, removeHashURL } from './helpers.js';
+import { uploadedARecipe } from './controller.js';
 
 export const state = {
   recipe: {},
@@ -156,6 +157,35 @@ export const transitionToDash = () => {
 
   //to fix the error for modal
   pageDashboardDOM.classList.add('pageDash-minHeight');
+};
+
+export const transitionToRecipe = () => {
+  pageDashboardDOM.classList.remove('page-transition-in');
+  pageRecipeDOM.classList.add('page-transition-in');
+  pageRecipeDOM.classList.add('page-transition-in-margin');
+
+  //to fix the error for modal
+  pageDashboardDOM.classList.remove('pageDash-minHeight');
+
+  //scroll
+  scrollInto(pageRecipeDOM);
+};
+
+export const transitionBackToDash = () => {
+  if (!uploadedARecipe) {
+    pageDashboardDOM.classList.add('page-transition-in');
+    pageRecipeDOM.classList.remove('page-transition-in');
+    pageRecipeDOM.classList.remove('page-transition-in-margin');
+    removeHashURL();
+
+    //to fix the error for modal
+    pageDashboardDOM.classList.add('pageDash-minHeight');
+  }
+
+  //fix error from Recipe Upload
+  if (uploadedARecipe) {
+    location.reload();
+  }
 };
 
 /***************************** Upload Recipe ********************************/

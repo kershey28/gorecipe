@@ -1,55 +1,6 @@
 'use strict';
 
 ////////////////////////////////////////////////////////////////////////////////
-////////////////////////// Elements ////////////////////////////////////////////
-
-// Main Containers
-const homeDOM = document.getElementById('home');
-const appDOM = document.getElementById('app');
-const pageDashboardDOM = document.getElementById('pageDashboard');
-const pageRecipeDOM = document.getElementById('pageRecipe');
-const heroDOM = document.getElementById('hero');
-
-//Elements
-const results = document.querySelector('.search-results');
-const recipeWindow = document.querySelector('.add-recipe-window');
-const cardFeatures = document.querySelectorAll('.card-float');
-
-// Buttons
-const btnStart = document.querySelector('.btn-start');
-const btnBack = document.querySelector('.btn-back');
-const btnReset = document.querySelector('.btn-reset');
-
-//Features
-const featureEl1 = document.querySelector('.btn-feature--1');
-const featureEl2 = document.querySelector('.btn-feature--2');
-const featureEl3 = document.querySelector('.btn-feature--3');
-const featureEl4 = document.querySelector('.btn-feature--4');
-/*
-API KEY: 99451a66-ba42-4f25-8f92-b6b515cce6f4
- */
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////// Functions  //////////////////////////////////////////
-
-////////  Transition In  ////////
-
-// const transitionToRecipe = e => {
-//   e.preventDefault();
-//   pageDashboardDOM.classList.remove('page-transition-in');
-//   pageRecipeDOM.classList.add('page-transition-in');
-//   pageRecipeDOM.classList.add('page-transition-in-margin');
-// };
-
-// const transitionBackToDash = () => {
-//   pageDashboardDOM.classList.add('page-transition-in');
-//   pageRecipeDOM.classList.remove('page-transition-in');
-//   pageRecipeDOM.classList.remove('page-transition-in-margin');
-// };
-
-/***************************** Event Listeners ********************************/
-
-////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// CONTROLLER  //////////////////////////////////////////
 import * as model from './model.js';
 import * as helpers from './helpers.js';
@@ -65,41 +16,26 @@ import getUsernameView from './views/getUsernameView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-/***************************** Transitions ********************************/
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Elements ////////////////////////////////////////////
 
-const transitionToRecipe = () => {
-  pageDashboardDOM.classList.remove('page-transition-in');
-  pageRecipeDOM.classList.add('page-transition-in');
-  pageRecipeDOM.classList.add('page-transition-in-margin');
+//Elements
+const results = document.querySelector('.search-results');
+const recipeWindow = document.querySelector('.add-recipe-window');
+const cardFeatures = document.querySelectorAll('.card-float');
 
-  //to fix the error for modal
-  pageDashboardDOM.classList.remove('pageDash-minHeight');
+// Buttons
+const btnBack = document.querySelector('.btn-back');
+const btnReset = document.querySelector('.btn-reset');
 
-  //scroll
-  helpers.scrollInto(pageRecipeDOM);
-};
-let uploadedARecipe = false;
-const transitionBackToDash = () => {
-  if (!uploadedARecipe) {
-    pageDashboardDOM.classList.add('page-transition-in');
-    pageRecipeDOM.classList.remove('page-transition-in');
-    pageRecipeDOM.classList.remove('page-transition-in-margin');
-    helpers.removeHashURL();
+//Features
+const featureEl1 = document.querySelector('.btn-feature--1');
+const featureEl2 = document.querySelector('.btn-feature--2');
+const featureEl3 = document.querySelector('.btn-feature--3');
+const featureEl4 = document.querySelector('.btn-feature--4');
 
-    //to fix the error for modal
-    pageDashboardDOM.classList.add('pageDash-minHeight');
-  }
-
-  //fix error from Recipe Upload
-  if (uploadedARecipe) {
-    location.reload();
-  }
-};
-
-/***************************** Transition Handlers ********************************/
-// btnStart.addEventListener('click', transitionToDash);
-btnBack.addEventListener('click', transitionBackToDash);
-btnReset.addEventListener('click', model.resetData);
+// States
+export let uploadedARecipe = false;
 
 /***************************** Functionality ********************************/
 
@@ -124,8 +60,8 @@ const controlRecipes = async function () {
     // 3) Rendering Recipe
     recipeView.render(model.state.recipe);
 
-    //Transition
-    transitionToRecipe();
+    // 4) Transition
+    model.transitionToRecipe();
   } catch (err) {
     console.log(err);
     recipeView.renderError();
@@ -194,10 +130,10 @@ const controlPagination = function (goToPage) {
 };
 
 const controlServings = function (newServings) {
-  // Update the recipe servings (in state)
+  // 1) Update the recipe servings (in state)
   model.updateServings(newServings);
 
-  // Update the recipe view
+  // 2) Update the recipe view
   recipeView.update(model.state.recipe);
 };
 
@@ -221,37 +157,39 @@ const controlBookmarks = function () {
 // Add recipe
 const controlAddRecipe = async function (newRecipe) {
   try {
-    // Show loading spinner
+    // 1) Show loading spinner
     addRecipeView.renderSpinner();
 
-    // Upload the new recipe data
+    // 2) Upload the new recipe data
     await model.uploadRecipe(newRecipe);
 
-    // Render recipe
+    // 3) Render recipe
     recipeView.render(model.state.recipe);
 
-    // Result message
+    // 4) Result message
     addRecipeView.renderMessage();
 
-    // Render bookmark view
+    // 5) Render bookmark view
     bookmarksView.render(model.state.bookmarks);
 
-    // Scroll into Window
+    // 6) Scroll into Window
     helpers.scrollInto(recipeWindow);
 
-    // Close form window
+    // 7) Close form window
     setTimeout(function () {
       addRecipeView.toggleWindow();
     }, config.MODAL_CLOSE_SEC * 1000);
 
-    // Change ID in URL
+    // 8) Change ID in URL
     window.history.pushState(null, '', `#${model.state.recipe.id}`);
 
-    // Transition to Recipe
-    setTimeout(transitionToRecipe, config.TRANSITION_SEC * 3000);
-
-    //setting a bug-fixer from Upload
+    // 9) Setting a bug-fixer from Upload (due to deleted innerHTML)
     uploadedARecipe = true;
+
+    console.log(uploadedARecipe);
+
+    // 10) Transition to Recipe
+    setTimeout(model.transitionToRecipe, config.TRANSITION_SEC * 1000);
   } catch (err) {
     console.error('💥', err);
     addRecipeView.renderError(err.message);
@@ -261,16 +199,16 @@ const controlAddRecipe = async function (newRecipe) {
 // Username
 const controlUsername = username => {
   if (username) {
-    // Display Message
+    // 1) Display Message
     getUsernameView.renderMessage();
 
-    // Set into Local Storage
+    // 2) Set into Local Storage
     model.setUsername();
 
-    // Transition to Dashboard
-    setTimeout(model.transitionToDash, config.TRANSITION_SEC * 3000);
+    // 3) Transition to Dashboard
+    setTimeout(model.transitionToDash, config.TRANSITION_SEC * 1000);
 
-    // Display Username
+    // 4) Display Username
     getUsernameView.displayData(username);
   }
   if (!username) {
@@ -307,12 +245,13 @@ const init = function () {
   searchView.addHandlerTypesSearch(controlSearchTypesResults3, featureEl3);
   searchView.addHandlerTypesSearch(controlSearchTypesResults4, featureEl4);
 
+  //Buttons
+  btnBack.addEventListener('click', model.transitionBackToDash);
+  btnReset.addEventListener('click', model.resetData);
+
   //Misc
   helpers.removeHashURL();
   controlAnimation();
 };
 
 init();
-
-// TEST
-console.log('testt');

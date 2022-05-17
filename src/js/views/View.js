@@ -12,6 +12,7 @@ export default class View {
    * @author Kershey Carino
    * @todo Finish implementation
    */
+
   render(data, render = true) {
     // Guard clause; to check also if the Arr has items
     if (!data || (Array.isArray(data) && data.length === 0))
