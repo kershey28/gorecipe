@@ -276,7 +276,7 @@
 
                 <div class="card-float">
                   <div class="card-float__box">
-                    <div class="card-float__circle"></div>
+                    <div class="card-float__circle">&nbsp;</div>
                     <div class="card-float__img-box">
                       <img
                         src="src/assets/img/features/feature4.png"
@@ -302,7 +302,7 @@
             </div>
 
             <figure class="carousel pageDashboard__carousel">
-              <h1 class="carousel__heading heading-1">Go&#x2193;</h1>
+              <h1 class="carousel__heading heading-1">Go<span class="carousel__heading--span">&#x2193;</span></h1>
 
               <div class="carousel__content">
                 <div
@@ -339,7 +339,7 @@
             </figure>
 
             <div class="search-results pageDashboard__search-results">
-              <ul class="results search-results__results">
+              <ul class="results search-results__results intro-flex">
                 <div class="message results__message">
                   <div>
                     <svg class="icon-primary">
@@ -381,19 +381,19 @@
               <div class="pagination search-results__pagination">
                 <!--Pagination JS-->
                 <!-- <button
-                  class="btn-text--primary pagination__btn--prev btn--inline"
+                  class="btn-text--primary pagination__btn--prev pagination__btn"
                 >
                   <svg class="pagination__icon icon-primary">
                     <use
                       href="src/assets/svg/sprite.svg#icon-arrow-left2"
                     ></use>
                   </svg>
-                  <span>Page 1</span>
+                  <span class="pagination__text">Page 1</span>
                 </button>
                 <button
-                  class="btn-text--primary pagination__btn--next btn--inline"
+                  class="btn-text--primary pagination__btn--next pagination__btn"
                 >
-                  <span>Page 3</span>
+                  <span class="pagination__text">Page 3</span>
                   <svg class="pagination__icon icon-primary">
                     <use
                       href="src/assets/svg/sprite.svg#icon-arrow-right2"
@@ -420,14 +420,14 @@
                   <h3 class="upload__heading">Recipe data</h3>
                   <label>Title</label>
                   <input
-                    value="Boiled Egg Ala Carte"
+                    placeholder="what's your gorecipe"
                     required
                     name="title"
                     type="text"
                   />
                   <label>URL</label>
                   <input
-                    value="gorecipe.com"
+                    placeholder="facebook link"
                     required
                     name="sourceUrl"
                     type="text"
@@ -505,6 +505,7 @@
                     placeholder="Format: 'Quantity,Unit,Description'"
                   />
                 </div>
+                
 
                 <button class="btn-cta upload__btn btn-upload">
                   <svg class="icon-white">
@@ -695,7 +696,7 @@
                 <a href="#" class="footer__nav--link">Contact me</a>
               </li>
               <li class="footer__nav--item">
-                <a href="#" class="footer__nav--link">Careers</a>
+                <a href="#" class="footer__nav--link">Projects</a>
               </li>
               <li class="footer__nav--item">
                 <a href="#" class="footer__nav--link">Privacy Policy</a>
@@ -705,8 +706,8 @@
               </li>
             </ul>
             <div class="footer__copyright">
-              <p>Built and designed by Kershey Cari&#241o.</p>
-              <p>&copy; 2022</p>
+              <p>Built and designed by your Pinoy web developer.</p>
+              <p>&copy; Kershey Cari&#241o 2022</p>
             </div>
           </footer>
           <!--Footer End-->

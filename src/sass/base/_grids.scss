@@ -67,6 +67,22 @@
   }
 }
 
+.results {
+  // display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 2rem;
+
+  @include breakpoints.respond(tab-land) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoints.respond(tab-port) {
+    grid-template-columns: 1fr;
+  }
+}
+
 .upload {
   display: grid;
   grid-template-areas:

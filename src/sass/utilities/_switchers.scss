@@ -80,6 +80,15 @@ $app-height: (
   opacity: 0;
 }
 
+//results message intro
+.intro-flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
 // bookmark heart position
 .bookmark-position {
   position: relative;

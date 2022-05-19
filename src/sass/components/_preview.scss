@@ -2,42 +2,42 @@
 @use '../utilities/flow';
 
 .preview {
-  margin-bottom: flow.$margin-mn;
+  margin-bottom: flow.$margin-sm;
 
   &__link {
     &:link,
     &:visited {
       //alignment
+      position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      gap: 3rem;
 
       //styling
       border: 1px solid var(--clr-primary-400);
       text-decoration: none;
       background-color: transparent;
-      padding: 1.5rem 3.25rem;
       transition: all 0.3s;
 
-      width: 50rem; //must coordinate with Title width
+      //sizing
+      height: 30rem;
+      width: 37rem;
+      padding: 1.5rem 3.25rem;
 
       @include breakpoints.respond(tab-port) {
-        width: 40rem;
-      }
-
-      @include breakpoints.respond(phone-reg) {
-        width: 35rem;
-        flex-direction: column;
-        gap: 2rem;
+        width: 100%;
       }
 
       @include breakpoints.respond(phone-mini) {
         width: 30rem;
+        padding: 1rem 2rem;
       }
     }
 
     &:hover {
       background-color: var(--clr-primary-opacity-300);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
     &--active {
@@ -47,21 +47,17 @@
 
   &__fig {
     //alignment
-    flex: 0 0 5.8rem;
-    margin-right: 2rem;
     position: relative;
 
     //styling
-    border-radius: 50%;
+    border-radius: 15px;
     backface-visibility: hidden;
 
     //sizing
     overflow: hidden;
-    height: 5.8rem;
-
-    @include breakpoints.respond(phone-reg) {
-      margin-right: 0;
-    }
+    height: 30rem;
+    width: 100%;
+    max-width: 60rem;
   }
 
   &__img {
@@ -73,16 +69,14 @@
   }
 
   &__data {
-    display: grid;
-    grid-template-columns: 1fr 2rem;
-    row-gap: 0.1rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
+    justify-content: center;
   }
 
   &__title {
-    grid-column: 1/-1;
-    font-size: 1.45rem;
+    font-size: 1.6rem; //1.45rem
     color: var(--clr-accent-400);
     text-transform: uppercase;
     font-weight: 600;
@@ -91,18 +85,20 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 32rem; //must coordinate with Preview width
+
+    //must coordinate with the Width of Link
+    max-width: 30rem;
 
     @include breakpoints.respond(tab-port) {
-      width: 22rem;
+      max-width: 42rem;
     }
 
     @include breakpoints.respond(phone-reg) {
-      width: 25rem;
+      max-width: 30rem;
     }
 
     @include breakpoints.respond(phone-mini) {
-      width: 20rem;
+      max-width: 25rem;
     }
   }
 
@@ -126,10 +122,12 @@
     //styling
     background-color: var(--clr-accent-100);
     border-radius: 10rem;
+    margin-top: flow.$margin-mn;
 
-    //margins
-    margin-left: auto;
-    margin-right: 1.75rem;
+    //position
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
   }
 
   &__svg {

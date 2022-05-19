@@ -16,28 +16,6 @@ import getUsernameView from './views/getUsernameView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////// Elements ////////////////////////////////////////////
-
-//Elements
-const results = document.querySelector('.search-results');
-const recipeWindow = document.querySelector('.add-recipe-window');
-const cardFeatures = document.querySelectorAll('.card-float');
-const inputSearch = document.querySelector('.search__input');
-
-// Buttons
-const btnBack = document.querySelector('.btn-back');
-const btnReset = document.querySelector('.btn-reset');
-
-//Features
-const featureEl1 = document.querySelector('.btn-feature--1');
-const featureEl2 = document.querySelector('.btn-feature--2');
-const featureEl3 = document.querySelector('.btn-feature--3');
-const featureEl4 = document.querySelector('.btn-feature--4');
-
-// States
-export let uploadedARecipe = false;
-
 /***************************** Functionality ********************************/
 
 // Recipe
@@ -71,6 +49,9 @@ const controlRecipes = async function () {
 
 // Search
 const controlSearchResults = async function () {
+  const results = document.querySelector('.results');
+  const inputSearch = document.querySelector('.search__input');
+
   try {
     resultsView.renderSpinner();
 
@@ -83,16 +64,25 @@ const controlSearchResults = async function () {
 
     // 3) Scroll into Results
     setTimeout(function () {
-      helpers.scrollInto(results);
+      helpers.scrollIntoPosition('results');
     }, 1000);
 
-    // 4) Load search results
+    // 4) Switch to Grid Layout
+    if (!alreadyClickSearch) {
+      results.classList.remove('intro-flex');
+      results.classList.add('grid');
+    }
+
+    //set the state
+    alreadyClickSearch = true;
+
+    // 5) Load search results
     await model.loadSearchResults(query);
 
-    // 5) Render results
+    // 6) Render results
     resultsView.render(model.getSearchResultsPage());
 
-    // 6) Render initial pagination buttons
+    // 7) Render initial pagination buttons
     paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
@@ -100,19 +90,30 @@ const controlSearchResults = async function () {
 };
 
 export const controlSearchTypesResults = async function (type) {
+  const results = document.querySelector('.results');
+
   try {
     resultsView.renderSpinner();
 
     // 1) Scroll into Results
-    helpers.scrollInto(results);
+    helpers.scrollIntoPosition('results');
 
-    // 2) Load search results
+    // 2) Switch to Grid Layout
+    if (!alreadyClickSearch) {
+      results.classList.remove('intro-flex');
+      results.classList.add('grid');
+    }
+
+    //set the state
+    alreadyClickSearch = true;
+
+    // 3) Load search results
     await model.loadSearchResults(type);
 
-    // 3) Render results
+    // 4) Render results
     resultsView.render(model.getSearchResultsPage());
 
-    // 4) Render initial pagination buttons
+    // 5) Render initial pagination buttons
     paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
@@ -179,7 +180,7 @@ const controlAddRecipe = async function (newRecipe) {
     bookmarksView.render(model.state.bookmarks);
 
     // 6) Scroll into Window
-    helpers.scrollInto(recipeWindow);
+    helpers.scrollIntoPosition('form-user');
 
     // 7) Close form window
     setTimeout(function () {
@@ -202,9 +203,11 @@ const controlAddRecipe = async function (newRecipe) {
 
 // Username
 const controlUsername = username => {
+  const formUserCon = document.querySelector('.form-user__container');
+
   if (username) {
     // 1) Display Message
-    getUsernameView.renderMessage();
+    getUsernameView.renderMessage(undefined, formUserCon);
 
     // 2) Set into Local Storage
     model.setUsername();
@@ -222,6 +225,8 @@ const controlUsername = username => {
 
 // Animation
 const controlAnimation = () => {
+  const cardFeatures = document.querySelectorAll('.card-float');
+
   const cardObserver = new IntersectionObserver(helpers.animateCard, {
     root: null,
     threshold: 1,
@@ -232,7 +237,27 @@ const controlAnimation = () => {
   });
 };
 
+/***************************** States ********************************/
+
+// Setting a bug-fixer from Upload (due to deleted innerHTML)
+export let uploadedARecipe = false;
+
+// To Switch the Results's Layout to Grid Once
+let alreadyClickSearch = false;
+
+/***************************** Initialization ********************************/
+
 const init = function () {
+  // Buttons
+  const btnBack = document.querySelector('.btn-back');
+  const btnReset = document.querySelector('.btn-reset');
+
+  //Features
+  const featureEl1 = document.querySelector('.btn-feature--1');
+  const featureEl2 = document.querySelector('.btn-feature--2');
+  const featureEl3 = document.querySelector('.btn-feature--3');
+  const featureEl4 = document.querySelector('.btn-feature--4');
+
   //Functionality
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
@@ -256,9 +281,12 @@ const init = function () {
   //Misc
   helpers.removeHashURL();
   controlAnimation();
+  model.setDateLog();
+  model.setUploadCount();
 };
 
 init();
 
 //TEST
-console.log('TEST');
+console.log('TESTTTTT');
+console.log(model.state);

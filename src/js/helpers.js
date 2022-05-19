@@ -30,8 +30,19 @@ export const AJAX = async function (url, uploadData = undefined) {
   }
 };
 
-export const scrollInto = element => {
-  element.scrollIntoView({ behavior: 'smooth' });
+export const scrollIntoPosition = position => {
+  let coord;
+  const phoneMediaQuery = window.matchMedia('(max-width: 600px)');
+
+  if (position === 'results' && !phoneMediaQuery.matches) coord = 1700;
+  if (position === 'results' && phoneMediaQuery.matches) coord = 2800;
+  if (position === 'form-user') coord = 650;
+  if (position === 'top') coord = 0;
+
+  window.scrollTo({
+    top: coord,
+    behavior: 'smooth',
+  });
 };
 
 export const removeHashURL = () => {

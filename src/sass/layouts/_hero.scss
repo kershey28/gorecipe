@@ -44,11 +44,15 @@
     position: relative;
 
     @include breakpoints.respond(tab-port) {
-      bottom: -30rem;
+      bottom: -35rem;
     }
 
     @include breakpoints.respond(phone-reg) {
-      bottom: -22rem;
+      bottom: -25rem;
+    }
+
+    @include breakpoints.respond(phone-mini) {
+      bottom: -18rem;
     }
 
     //box bg

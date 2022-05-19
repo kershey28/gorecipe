@@ -55,8 +55,8 @@ export default class View {
     });
   }
 
-  _clear() {
-    this._parentElement.innerHTML = '';
+  _clear(element = this._parentElement) {
+    element.innerHTML = '';
   }
 
   renderSpinner() {
@@ -83,7 +83,7 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderError(message = this._errorMessage) {
+  renderError(message = this._errorMessage, element = this._parentElement) {
     const markup = `<div class="error">
     <div>
       <svg>
@@ -92,11 +92,11 @@ export default class View {
     </div>
     <p>${message}</p>
   </div>`;
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._clear(element);
+    element.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderMessage(message = this._message) {
+  renderMessage(message = this._message, element = this._parentElement) {
     const markup = `<div class="message recipe__message">
     <div>
       <svg class="icon">
@@ -107,8 +107,8 @@ export default class View {
     ${message}
     </p>
   </div>`;
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._clear(element);
+    element.insertAdjacentHTML('afterbegin', markup);
   }
 
   renderErrorFast(message = this._errorMessage) {

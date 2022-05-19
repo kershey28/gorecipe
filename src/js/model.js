@@ -1,5 +1,5 @@
 import { API_URL, RES_PER_PAGE, API_KEY } from './config.js';
-import { AJAX, scrollInto, removeHashURL } from './helpers.js';
+import { AJAX, removeHashURL, scrollIntoPosition } from './helpers.js';
 import { uploadedARecipe } from './controller.js';
 
 export const state = {
@@ -113,7 +113,8 @@ export const deleteBookmark = function (id) {
 };
 
 export const clearBookmarks = function () {
-  localStorage.clear('bookmarks');
+  // localStorage.clear('bookmarks');
+  localStorage.removeItem('bookmarks');
 };
 // clearBookmarks();
 
@@ -124,7 +125,7 @@ export const setUsername = function () {
 };
 
 const clearUsername = function () {
-  localStorage.clear('username');
+  localStorage.removeItem('username');
 };
 
 export const resetData = () => {
@@ -133,12 +134,49 @@ export const resetData = () => {
   location.reload();
 };
 
+/***************************** Date ********************************/
+
+export const setDateLog = () => {
+  const date = new Date();
+  state.dateLog = date.getDay();
+};
+
+export const setDateUpload = () => {
+  const date = new Date();
+  state.dateUpload = date.getDay();
+  localStorage.setItem('dateUpload', JSON.stringify(state.dateUpload));
+};
+
+export const setUploadCount = () => {
+  if (state.uploadCount) {
+    setUploadCountReset();
+    return;
+  }
+  if (!state.uploadCount) {
+    state.uploadCount = 0;
+  }
+};
+
+export const setUploadCountReset = () => {
+  if (!state.dateUpload || state.dateLog === state.dateUpload) return;
+  else {
+    state.uploadCount = 0;
+    localStorage.setItem('uploadCount', JSON.stringify(state.uploadCount));
+  }
+};
+
+/***************************** Initialization Storage ********************************/
+
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
   const storageUsername = localStorage.getItem('username');
+  const storageDateUpload = localStorage.getItem('dateUpload');
+  const storageUploadCount = localStorage.getItem('uploadCount');
 
   if (storage) state.bookmarks = JSON.parse(storage);
   if (storageUsername) state.username = JSON.parse(storageUsername);
+  if (storageDateUpload) state.dateUpload = JSON.parse(storageDateUpload);
+  if (storageUploadCount) state.uploadCount = JSON.parse(storageUploadCount);
 };
 init();
 
@@ -168,7 +206,7 @@ export const transitionToRecipe = () => {
   pageDashboardDOM.classList.remove('pageDash-minHeight');
 
   //scroll
-  scrollInto(pageRecipeDOM);
+  scrollIntoPosition('top');
 };
 
 export const transitionBackToDash = () => {
@@ -210,7 +248,7 @@ export const uploadRecipe = async function (newRecipe) {
       title: newRecipe.title,
       source_url: newRecipe.sourceUrl,
       image_url: newRecipe.image,
-      publisher: newRecipe.publisher,
+      publisher: state.username, //newRecipe.publisher
       cooking_time: +newRecipe.cookingTime,
       servings: +newRecipe.servings,
       ingredients,

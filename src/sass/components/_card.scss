@@ -42,11 +42,6 @@
       font-style: italic;
       color: var(--clr-primary-opacity-300);
     }
-
-    &:hover &__circle {
-      clip-path: circle(300px at 80% -20%);
-      background-color: var(--clr-primary-500);
-    }
   }
 
   &__circle {
@@ -63,6 +58,11 @@
     background-color: var(--clr-primary-300);
     clip-path: circle(150px at 80% 20%);
     transition: 0.5s ease-in-out;
+  }
+
+  &__box:hover &__circle {
+    clip-path: circle(300px at 80% -20%);
+    background-color: var(--clr-primary-500);
   }
 
   &__img-box {

@@ -1,4 +1,5 @@
 @use '../../utilities/flow';
+@use '../../abstracts/breakpoints';
 
 .search-results {
   margin-top: flow.$margin-lg;
@@ -9,6 +10,7 @@
   &__results {
     list-style: none;
     margin-bottom: flow.$margin-mn;
+    padding-inline: 5rem;
   }
 }
 
@@ -22,12 +24,29 @@
     clear: both;
   }
 
+  &__text {
+    position: relative;
+    bottom: 0.5rem;
+  }
+
   &__btn {
     &--prev {
       float: left;
+      position: relative;
+      left: 3rem;
+
+      @include breakpoints.respond(phone-mini) {
+        left: 4rem;
+      }
     }
     &--next {
       float: right;
+      position: relative;
+      right: 3rem;
+
+      @include breakpoints.respond(phone-mini) {
+        right: 4rem;
+      }
     }
   }
 }

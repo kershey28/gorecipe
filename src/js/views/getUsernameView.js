@@ -1,5 +1,8 @@
 import View from './View.js';
 import { state, transitionToDash } from '../model.js';
+import { CHAR_USER_MIN } from '../config';
+
+import icons from 'url:../../assets/svg/sprite.svg';
 
 class GetUsernameView extends View {
   _parentElement = document.querySelector('.form-user__content');
@@ -23,7 +26,6 @@ class GetUsernameView extends View {
   toggleWindow() {
     this._overlay.classList.toggle('hidden');
     this._window.classList.toggle('hidden');
-    //   scrollInto(this._window);
   }
 
   toggleTransition() {
@@ -51,8 +53,32 @@ class GetUsernameView extends View {
       e.preventDefault();
 
       const username = this.username.value;
-      state.username = username;
-      handler(username);
+      const usernameCount = username.length;
+
+      const formCon = document.querySelector('.form-user');
+      const formInput = document.querySelector('.form-user__input');
+      const errorMessage = 'Name must be at least 4 characters long to join!';
+      const markup = `<div class="error-user error remove-error">
+        <div>
+          <svg>
+            <use href="${icons}#icon-warning"></use>
+          </svg>
+        </div>
+        <p>${errorMessage}</p>
+      </div>`;
+
+      if (usernameCount < CHAR_USER_MIN) {
+        // Clear Input
+        formInput.value = '';
+        formInput.blur();
+
+        // Render Error
+        formCon.insertAdjacentHTML('afterbegin', markup);
+      } else {
+        // Set Username
+        state.username = username;
+        handler(username);
+      }
     });
   }
 
